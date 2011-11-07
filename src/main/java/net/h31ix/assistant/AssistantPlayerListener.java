@@ -56,21 +56,5 @@ public class AssistantPlayerListener extends PlayerListener {
             config.setProperty(safenick2, start1);
             config.save();
         }
-            
-    /*public void onPlayerJoin (PlayerJoinEvent event) {
-        System.out.println("An onplayerlogin has occured");
-                Player player = event.getPlayer();
-                String safenick = player.getName().toLowerCase().replaceAll("'", "\"");
-                String safenick1 = safenick.replaceAll("§f", "");
-                String safenick2 = (safenick1+"+");
-                String seen = config.getString(safenick1);
-                if (seen == null)
-                {
-                config = plugin.getConfiguration();
-                config.load();
-                long lStartTime = new Date().getTime(); //start time
-                config.setProperty("derpy", lStartTime);
-                config.save();
-                }*/
     }
 }

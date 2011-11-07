@@ -13,23 +13,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
-import java.text.SimpleDateFormat;
-import java.lang.System;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Event.Priority;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.Event.Type;
-import org.bukkit.event.player.PlayerListener;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
@@ -38,7 +25,6 @@ public class Assistant extends JavaPlugin {
     private Configuration config;
     private AssistantPlayerListener playerListener = new AssistantPlayerListener(this);
     public static Assistant plugin;
-    public final Logger logger = Logger.getLogger("Minecraft");
     
     
     public void onDisable() {
@@ -112,7 +98,7 @@ public class Assistant extends JavaPlugin {
                 
                 
                 if (cel.equalsIgnoreCase(safenick1)){
-                    player.sendMessage(ChatColor.RED + "I am superman.");
+                    player.sendMessage(ChatColor.RED + "Still trying to find yourself, bud?");
                 }
                 else {
                 List list = getServer().matchPlayer(cel);
@@ -165,7 +151,7 @@ public class Assistant extends JavaPlugin {
                 return true;
             }
            });
-        System.out.println(this + " is now enabled with ERKUL!"); 
+        System.out.println(this + " is now enabled."); 
     } 
 }    
 

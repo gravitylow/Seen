@@ -17,39 +17,32 @@ import org.bukkit.entity.Player;
 import java.util.Date;
 import java.util.List;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.config.Configuration;
 
 public class Assistant extends JavaPlugin {
-    private Configuration config;
-    private AssistantPlayerListener playerListener = new AssistantPlayerListener(this);
+    private FileConfiguration config;
+    public File configFile = new File("plugins/Seen/config.yml");
     public static Assistant plugin;
     
     
+    @Override
     public void onDisable() {
         // TODO: Place any custom disable code here.
         System.out.println(this + " is now disabled!");
     }
     
 
+    @Override
     public void onEnable() {
     PluginManager pluginManager = getServer().getPluginManager();
-    pluginManager.registerEvent(org.bukkit.event.Event.Type.PLAYER_JOIN, playerListener, org.bukkit.event.Event.Priority.Monitor, this);
-    pluginManager.registerEvent(org.bukkit.event.Event.Type.PLAYER_QUIT, playerListener, org.bukkit.event.Event.Priority.Monitor, this);
+    pluginManager.registerEvents(new AssistantPlayerListener(this), this);
     new File("plugins/Seen").mkdir();
-		File configFile = new File("plugins/Seen/config.yml");
 		if(!configFile.exists()) {
-		    try {
-		    	configFile.createNewFile();
-		    } catch(Exception e) {
-		    }
+                    saveDefaultConfig();
 		}
-	    config = getConfiguration(); 
-		if (configFile.length()==0) {
-		    config.save(); 		
-		}
-	    config.load(); 
+	    config = getConfig(); 
             getCommand("seen").setExecutor(new CommandExecutor() {
             public boolean onCommand(CommandSender cs, Command cmnd, String alias, String[] args) {
                 Player player = (Player)cs;
